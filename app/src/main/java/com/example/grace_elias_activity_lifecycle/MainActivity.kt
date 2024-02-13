@@ -3,16 +3,25 @@ package com.example.grace_elias_activity_lifecycle
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.example.grace_elias_activity_lifecycle.databinding.ActivityMainBinding
 
 private const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity()
 {
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         Log.d(TAG, "onCreate(Bundle?) called")
+
+        binding.button.setOnClickListener{
+            binding.textview.setText(R.string.hello)
+            binding.editview.setText(R.string.hello)
+        }
     }
 
     override fun onStart()
